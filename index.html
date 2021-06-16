@@ -34,15 +34,13 @@
 
     /**
      * 创建巡航器
-     * @param trackPoint 坐标点
      */
-    function initPath(trackPoint) {
+    function initPath() {
         map.clearMap();
         if (window.pathSimplifierIns) {
             //通过该方法清空上次传入的轨迹
             pathSimplifierIns.setData([]);
         }
-        ;
         AMapUI.load(['ui/misc/PathSimplifier'], function (PathSimplifier) {
             if (!PathSimplifier.supportCanvas) {
                 alert('当前环境不支持 Canvas！无法展示路径');
@@ -147,7 +145,7 @@
         }
     }
 
-    initPath(data.trackPoint);
+    initPath();
     fixedPoint(data.mapPointList);
 </script>
 </body>
