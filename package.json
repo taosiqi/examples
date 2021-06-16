@@ -1,0 +1,22 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "日常积累的项目，一个项目一个分支。",
+  "main": "data.js",
+  "scripts": {
+    "run": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taosiqi/examples.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taosiqi/examples/issues"
+  },
+  "homepage": "https://github.com/taosiqi/examples#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
