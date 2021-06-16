@@ -1,0 +1,141 @@
+<!-- 重点参数：renderOptions -->
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>轨迹展示&巡航</title>
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+            margin: 0px;
+        }
+
+        .amap-marker-label {
+            border: 0;
+            background-color: transparent
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="./data.js"></script>
+    <script type="text/javascript" src='//webapi.amap.com/maps?v=1.4.15&key=e12e6e76d6c6362c02efe99c2d9c4c5c'></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.1/main.js?v=1.1.1"></script>
+    <script type="text/javascript">
+        //创建地图
+        var map = new AMap.Map('container');
+        function initPath(trackPoint) {
+            map.clearMap();
+            if (window.pathSimplifierIns) {
+                //通过该方法清空上次传入的轨迹
+                pathSimplifierIns.setData([]);
+            };
+            AMapUI.load(['ui/misc/PathSimplifier'], function (PathSimplifier) {
+                if (!PathSimplifier.supportCanvas) {
+                    alert('当前环境不支持 Canvas！无法展示路径');
+                    return
+                }
+                let pathSimplifierIns = new PathSimplifier({
+                    zIndex: 100,
+                    map: map,
+                    data: [
+                        {
+                            name: "测试路径",
+                            path: data.trackPoint
+                        }
+                    ],
+                    getPath: function (pathData, pathIndex) {
+                        return pathData.path;
+                    },
+                    getHoverTitle: function (pathData, pathIndex, pointIndex) {
+                        // 鼠标悬停在节点之间的连线上
+                        return '测试路径'
+                    },
+                    autoSetFitView: true,
+                    renderOptions: {
+                        // 轨迹线的样式
+                        pathLineStyle: {
+                            strokeStyle: '#E04356',
+                            lineWidth: 10,
+                            dirArrowStyle: true
+                        }
+                    }
+                });
+                window.pathSimplifierIns = pathSimplifierIns;
+                // setData可用于后面增加路线
+                // pathSimplifierIns.setData([{
+                //     name: 'Test',
+                //     path: PathSimplifier.getGeodesicPath([116.405289, 39.904987], [87.61792, 43.793308], 300)
+                // }]);
+                pathSimplifierIns.createPathNavigator(0, {
+                    loop: true, // 循环播放
+                    speed: 1000,
+                }).start()
+            });
+        }
+        function fixedPoint(pointArr) {
+            map.clearMap();
+            for (let i = 0; i < pointArr.length; i++) {
+                let info = [],
+                    labelContent = '';
+                switch (pointArr[i].type) {
+                    case 'start':
+                        // 起点'
+                        labelContent = '<div style="width: 95px;height: 50px;line-height: 45px;text-align: center;color: #00BDFF;font-size: 10px;transform: scale(.9)">开始行程</div>'
+                        pointArr[i].address ? info.push(`乘客选择的订单起点：${pointArr[i].address}`) : info.push('')
+                        break;
+                    case 'end':
+                        // 终点
+                        labelContent = '<div style="width: 95px;height: 50px;line-height: 45px;text-align: center;color: #2587EF;font-size: 10px;transform: scale(.8)">结束行程</div>'
+                        pointArr[i].address ? info.push(`乘客选择的订单终点：${pointArr[i].address}`) : info.push('');
+                        break;
+                    default:
+                        break;
+                }
+                let icon = new AMap.Icon({
+                    size: new AMap.Size(95, 50), // 图标尺寸
+                    image: './icon.png', // Icon的图像
+                    imageOffset: new AMap.Pixel(0, 0), // 图像相对展示区域的偏移量，适于雪碧图等
+                    imageSize: new AMap.Size(95, 50)   // 根据所设置的大小拉伸或压缩图片
+                });
+
+                let marker = new AMap.Marker({
+                    position: new AMap.LngLat(
+                        pointArr[i].point.lon,
+                        pointArr[i].point.lat
+                    ),
+                    offset: new AMap.Pixel(0, 0),
+                    icon: icon, // 添加 Icon 实例发布终点
+                    zoom: 13,
+                    anchor: "bottom-center", // 设置锚点方位
+                    label: {
+                        content: labelContent,
+                        offset: new AMap.Pixel(0, -5)
+                    }
+                });
+                console.log(info);
+                var infoWindow = new AMap.InfoWindow({
+                    offset: new AMap.Pixel(0, 0),
+                    content: info.join('<br/>')
+                });
+                //鼠标点击marker弹出自定义的信息窗体
+                AMap.event.addListener(marker, 'click', function () {
+                    infoWindow.open(map, marker.getPosition());
+                });
+                map.add(marker);
+                map.setFitView();
+            }
+        }
+        initPath(data.trackPoint);
+        fixedPoint(data.mapPointList);
+    </script>
+</body>
+
+</html>
