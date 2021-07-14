@@ -33,7 +33,7 @@ const ItemModel: ItemModelType = {
   state: {
     name: 'item',
     items: [],
-    filterKey: 0
+    filterKey: 0,
   },
 
   effects: {
@@ -60,12 +60,12 @@ const ItemModel: ItemModelType = {
       return history.listen(({ pathname }) => {
         if (pathname === '/item') {
           dispatch({
-            type: 'query'
-          })
+            type: 'query',
+          });
         }
       });
-    }
+    },
   },
 };
 
-export default ItemModel
+export default ItemModel;

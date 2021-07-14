@@ -1,6 +1,10 @@
 import { defineConfig } from 'umi';
+
 const pxToViewPort = require('postcss-px-to-viewport');
 export default defineConfig({
+  define: {
+    FOO: 'bar',
+  },
   esbuild: {},
   nodeModulesTransform: {
     type: 'none',
@@ -20,7 +24,7 @@ export default defineConfig({
   },
   mfsu: {},
   webpack5: {},
-  exportStatic: {},
+  // exportStatic: {},
   ignoreMomentLocale: true,
   extraPostCSSPlugins: [
     pxToViewPort({
@@ -40,21 +44,21 @@ export default defineConfig({
     }),
   ],
   routes: [
-    {
-      path: '/login',
-      component: '@/pages/login',
-      title: '登录',
-    },
-    {
-      path: '/h',
-      component: '@/layouts/index',
-      routes: [
-        { path: '/', component: '@/pages/index' },
-        { path: '/stage', component: '@/pages/stage' },
-        { path: '/skill', component: '@/pages/skill' },
-        { component: '@/pages/404' },
-      ],
-    },
+    // {
+    //   path: '/login',
+    //   component: '@/pages/login',
+    //   title: '登录',
+    // },
+    { path: '/', component: '@/pages/index', title: '首页' },
+    // {
+    //   path: '/',
+    //   component: '@/layouts/home',
+    //   routes: [
+    //     { path: '/stage', component: '@/pages/stage' },
+    //     { path: '/skill', component: '@/pages/skill' },
+    //     { component: '@/pages/404' },
+    //   ],
+    // },
     { component: '@/pages/404' },
   ],
   fastRefresh: {},

@@ -35,20 +35,21 @@ const IndexModel: IndexModelType = {
     heros: [],
     freeheros: [],
     filterKey: 0,
-    itemHover: 0
+    itemHover: 0,
   },
   effects: {
     *fetch({ type, payload }, { put, call, select }) {
-      const data = yield request('https://bird.ioliu.cn/v2?url=https://pvp.qq.com/web201605/js/herolist.json');
+      const data = yield request(
+        'https://bird.ioliu.cn/v2?url=https://pvp.qq.com/web201605/js/herolist.json',
+      );
       yield put({
         type: 'save',
         payload: {
-          heros: data
+          heros: data,
         },
       });
     },
-    *query({ payload }, { call, put }) {
-    },
+    *query({ payload }, { call, put }) {},
   },
   reducers: {
     save(state, action) {
@@ -63,11 +64,11 @@ const IndexModel: IndexModelType = {
       return history.listen(({ pathname }) => {
         if (pathname === '/') {
           dispatch({
-            type: 'fetch'
-          })
+            type: 'fetch',
+          });
         }
       });
-    }
+    },
   },
 };
 

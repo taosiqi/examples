@@ -1,5 +1,5 @@
 import styles from './index.less';
-import { useSelector, useDispatch,useStore } from 'umi';
+import { useSelector, useDispatch, useStore } from 'umi';
 export default function IndexPage() {
   return (
     <div>
