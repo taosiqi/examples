@@ -10,7 +10,11 @@ export default defineConfig({
   },
   dva: {},
   routes: [
-    { path: '/login', component: '@/pages/login' },
+    {
+      path: '/login',
+      component: '@/pages/login',
+      title: '登录',
+    },
     {
       path: '/',
       component: '@/layouts/index',
@@ -20,10 +24,7 @@ export default defineConfig({
         { path: '/skill', component: '@/pages/skill' },
       ],
     },
-    { component: '@/pages/404' }
+    { component: '@/pages/404' },
   ],
-  fastRefresh: {
-
-  },
-
+  fastRefresh: {},
 });
