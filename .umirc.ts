@@ -1,6 +1,7 @@
 import { defineConfig } from 'umi';
-import pxToViewPort from 'postcss-px-to-viewport';
+const pxToViewPort = require('postcss-px-to-viewport');
 export default defineConfig({
+  esbuild: {},
   nodeModulesTransform: {
     type: 'none',
   },
@@ -11,7 +12,16 @@ export default defineConfig({
     dark: false,
     compact: true,
   },
-  dva: {},
+  targets: {
+    ie: 11,
+  },
+  dva: {
+    hmr: true,
+  },
+  mfsu: {},
+  webpack5: {},
+  exportStatic: {},
+  ignoreMomentLocale: true,
   extraPostCSSPlugins: [
     pxToViewPort({
       unitToConvert: 'px', // 要转化的单位
