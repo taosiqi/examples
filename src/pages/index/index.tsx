@@ -15,6 +15,7 @@ const IndexPage: FC<PageProps> = (indexProps) => {
   let {
     index: { heros },
   } = indexProps;
+  // console.log(indexProps);
   let dispatch = useDispatch();
   const onChange = () => {
     dispatch({

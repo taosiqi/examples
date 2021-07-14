@@ -8,6 +8,7 @@ interface PageProps extends ConnectProps {
 
 const IndexPage: FC<PageProps> = ({ item, dispatch }) => {
   const { items = [], filterKey = 0 } = item;
+  // console.log("hello", FOO)
   return (
     <div>
       <NavBar
