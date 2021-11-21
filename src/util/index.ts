@@ -1,14 +1,11 @@
-interface clearObjectType {
-  [key: string]: value;
-}
-type value = string | number | undefined | null;
-export const isFalsy = (value: value) => (value === 0 ? false : !value);
-export const clearObject = (object: clearObjectType) => {
+export const isFalsy = (value: unknown) => (value === 0 ? false : !value);
+
+export const clearObject = <T>(object: T) => {
   const ret = { ...object };
-  Object.keys(ret).forEach((key) => {
-    if (isFalsy(ret[key])) {
-      delete ret[key];
+  for (const retKey in ret) {
+    if (isFalsy(ret[retKey])) {
+      delete ret[retKey];
     }
-  });
+  }
   return ret;
 };

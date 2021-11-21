@@ -10,7 +10,7 @@ export const useMount = (fn: () => void) => {
  * @param value useState
  * @param time 延时时间
  */
-export const useDebounce = (value: any, time?: number) => {
+export const useDebounce = <T>(value: T, time?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
     const timeout = setTimeout(() => setDebounceValue(value), time);
@@ -19,4 +19,19 @@ export const useDebounce = (value: any, time?: number) => {
     };
   }, [value, time]);
   return debounceValue;
+};
+
+export const useArray = <T>(initialArray: T[]) => {
+  const [value, setValue] = useState(initialArray);
+  return {
+    value,
+    setValue,
+    add: (item: T) => setValue([...value, item]),
+    clear: () => setValue([]),
+    removeIndex: (index: number) => {
+      const copy = { ...value };
+      copy.splice(index, 1);
+      setValue(copy);
+    },
+  };
 };

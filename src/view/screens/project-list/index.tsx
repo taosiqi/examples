@@ -28,7 +28,7 @@ export const ProjectList = () => {
   });
   const [users, setUsers] = useState<usersType[]>([]);
   const [list, setList] = useState<listType[]>([]);
-  const debouncedParam = useDebounce(param, 200);
+  const debouncedParam = useDebounce<paramType>(param, 200);
   useMount(() => {
     fetch(`${url}/users`).then(async (res) => {
       if (res.ok) {
@@ -38,13 +38,13 @@ export const ProjectList = () => {
   });
 
   useEffect(() => {
-    fetch(`${url}/projects?${qs.stringify(clearObject(debouncedParam))}`).then(
-      async (res) => {
-        if (res.ok) {
-          setList(await res.json());
-        }
+    fetch(
+      `${url}/projects?${qs.stringify(clearObject<paramType>(debouncedParam))}`
+    ).then(async (res) => {
+      if (res.ok) {
+        setList(await res.json());
       }
-    );
+    });
   }, [debouncedParam]);
   return (
     <>
