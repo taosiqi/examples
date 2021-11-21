@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export const useMount = (fn) => {
+export const useMount = (fn: () => void) => {
   useEffect(() => {
     fn();
   }, []);
@@ -10,7 +10,7 @@ export const useMount = (fn) => {
  * @param value useState
  * @param time 延时时间
  */
-export const useDebounce = (value, time) => {
+export const useDebounce = (value: any, time?: number) => {
   const [debounceValue, setDebounceValue] = useState(value);
   useEffect(() => {
     const timeout = setTimeout(() => setDebounceValue(value), time);

@@ -1,4 +1,11 @@
-export const SearchPanel = (props) => {
+import { usersType, paramType } from "./index";
+interface propsType {
+  param: paramType;
+  setParam: any;
+  users: usersType[];
+}
+
+export const SearchPanel = (props: propsType) => {
   const { param, setParam, users } = props;
   return (
     <form>
