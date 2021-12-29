@@ -1,0 +1,18 @@
+build/*.js
+node_modules
+dist
+package
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+/src/static/*
+/src/static/lib/*
