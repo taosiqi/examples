@@ -14,3 +14,5 @@
 [jira](https://github.com/taosiqi/examples/tree/jira) ：react demo
 
 [react-mobile](https://github.com/taosiqi/examples/tree/react-mobile) ：react-mobile 基于antd-mobile+vw+craco
+
+[weixin-hijacked](https://github.com/taosiqi/examples/tree/weixin-hijacked) ：微信小程序劫持page
