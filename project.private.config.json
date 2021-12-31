@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "购物车",
+          "pathName": "cart/cart",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "详情",
+          "pathName": "cart/cart",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "个人中心",
+          "pathName": "my/my",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

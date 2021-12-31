@@ -1,16 +1,4 @@
 # examples
-一个分支一个项目存档
-
-[vue-press-demo](https://github.com/taosiqi/examples/tree/vue-press-demo) ： vuepress demo
-
-[umi-demo01](https://github.com/taosiqi/examples/tree/umi-demo01) ：umijs demo
-
-[amap-taxi](https://github.com/taosiqi/examples/tree/amap-taxi) ：高德地图轨迹展示&巡航
-
-[amap-cruiser](https://github.com/taosiqi/examples/tree/amap-cruiser) ：高德地图轨迹展示&巡航
-
-[taro-demo01](https://github.com/taosiqi/examples/tree/taro-demo01) ：京东taro demo
-
-[jira](https://github.com/taosiqi/examples/tree/jira) ：react demo
-
-[react-mobile](https://github.com/taosiqi/examples/tree/react-mobile) ：react-mobile 基于antd-mobile+vw+craco
+微信小程序劫持Page  
+不管用户第一个访问的页面是：首页、详情页、购物车、个人中心...任意页面，保障该页面周期onLoad、onShow、onReady运行时，都是处于已登录（登录态）。  
+来自掘金用户李伟豪:https://juejin.cn/post/7046970790050267149
